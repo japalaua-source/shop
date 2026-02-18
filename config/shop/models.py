@@ -8,4 +8,8 @@ class Product(models.Model):
     rating = models.PositiveIntegerField()
     stock = models.PositiveIntegerField()
     is_available = models.BooleanField(default=True)
+class Order(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
+    delivery_adress = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
 # Create your models here.

@@ -16,7 +16,10 @@ Including another URLconf
 """
 from shop.views import catalog
 from django.urls import path
-
+from shop.views import orders
+from shop.views import product_detail
 urlpatterns = [
-  path('', catalog)
+  path('catalog/', catalog,name='catalog'),
+  path('orders/', orders,name='orders'),
+  path('shop/product/<int:product_id>/', product_detail, name='product_detail'),
 ]
