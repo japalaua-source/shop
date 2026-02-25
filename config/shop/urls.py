@@ -18,8 +18,10 @@ from shop.views import catalog
 from django.urls import path
 from shop.views import orders
 from shop.views import product_detail
+from shop.views import order_create
 urlpatterns = [
   path('catalog/', catalog,name='catalog'),
   path('orders/', orders,name='orders'),
   path('shop/product/<int:product_id>/', product_detail, name='product_detail'),
+  path('order_create/<int:product_id>/', order_create, name='order_create'),
 ]
