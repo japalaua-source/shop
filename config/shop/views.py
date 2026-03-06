@@ -3,15 +3,23 @@ from .models import Product
 from .models import Order
 from django.shortcuts import redirect
 def catalog(request):
+    if not request.user.is_authenticated:
+        return redirect('signin')
     products = Product.objects.all()
     return render(request, 'shop/catalog.html', {'products': products})
 def orders(request):
+    if not request.user.is_authenticated:
+        return redirect('signin')
     orders = Order.objects.all()
     return render(request, 'shop/orders.html', {'orders': orders})
 def product_detail(request, product_id):
+    if not request.user.is_authenticated:
+        return redirect('signin')
     product = Product.objects.get(id=product_id)
     return render(request, 'shop/product_detail.html',{'product': product})
 def order_create(request, product_id):
+    if not request.user.is_authenticated:
+        return redirect('signin')
     product = Product.objects.get(id=product_id)
     if request.method == 'POST':
         Order.objects.create(product=product, delivery_address=request.POST.get('delivery_address'))
