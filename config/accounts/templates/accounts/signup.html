@@ -23,6 +23,9 @@
         <li class="nav-item"><a href="#" class="nav-link">About</a></li>
       </ul>
     </header>
+    <h1 class="text-body text-center fw-bold mb-4">
+    Sign up
+    </h1>
     {% if error %}
         <p class="text-center text-danger fw bold">
          {{error}}
@@ -30,23 +33,31 @@
     {% endif %}
 <form method="post">
 {% csrf_token %}
+<div class="form-floating">
 <input class="form-control"type="text" name="username" placeholder="Username"id="username" required>
 <label for="username">
 Username
 </label>
+</div>
+<div class="form-floating">
 <input class="form-control"type="text" name="email" placeholder="Email"id="email" required>
 <label for="email">
 Email
 </label>
+</div>
+<div class="form-floating">
 <input class="form-control"type="text" name="password" placeholder="Password"id="password" required>
 <label for="password">
 Password
 </label>
+</div>
+<div class="form-floating">
 <input class="form-control"type="text" name="r_password" placeholder="R_password"id="r_password" required>
 <label for="r_password">
 R_password
 </label>
-<button type="submit">
+</div>
+<button class="btn btn-secondary btn-lg w-100"type="submit">
 Register
 </button>
 </form>

@@ -10,7 +10,10 @@ def catalog(request):
 def orders(request):
     if not request.user.is_authenticated:
         return redirect('signin')
-    orders = Order.objects.all()
+    if request.user.id == 1:
+        orders = Order.objects.all
+    else:
+        orders = Order.objects.filter(user=request.user)
     return render(request, 'shop/orders.html', {'orders': orders})
 def product_detail(request, product_id):
     if not request.user.is_authenticated:
@@ -22,7 +25,7 @@ def order_create(request, product_id):
         return redirect('signin')
     product = Product.objects.get(id=product_id)
     if request.method == 'POST':
-        Order.objects.create(product=product, delivery_address=request.POST.get('delivery_address'))
+        Order.objects.create(user=request.user,product=product, delivery_address=request.POST.get('delivery_address'))
         return redirect('orders')
     return render(request, 'shop/order_create.html', {'product':product})
 # Create your views here.
